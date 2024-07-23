@@ -26,10 +26,10 @@ const login = async(req,res) => {
             return res.status(401).json({message: "Password is incorrect"});
         }
 
-        /*const tokenExist = req.cookies.token;
+        const tokenExist = req.cookies.token;
         if(tokenExist){
             return res.status(400).json({message: "User is already logged in"});
-        }*/
+        }
 
         const token = jwt.sign({id: user._id}, process.env.SECRET_KEY,  {
             expiresIn : "1h"

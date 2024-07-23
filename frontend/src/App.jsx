@@ -7,6 +7,9 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import './App.css';
 import Profile from './pages/Profile'
+import Problem from './pages/problems/Problem'
+import AddP from './components/addProbs/AddProb'
+import Edit from './components/update/Edit'
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -20,6 +23,9 @@ function App() {
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path="/profile" element={<Profile/>} />
+      <Route path="/problems" element={<Problem/>} />
+      <Route path="/add" element={<AddP/>} />
+      <Route path='/edit/:id' element={<Edit/>}/>
     </Routes>
     </>
   )
