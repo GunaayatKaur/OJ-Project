@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import Problem from './pages/problems/Problem'
 import AddP from './components/addProbs/AddProb'
 import Edit from './components/update/Edit'
+import Solve from './pages/compiler/Solve'
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -26,6 +27,7 @@ function App() {
       <Route path="/problems" element={<Problem/>} />
       <Route path="/add" element={<AddP/>} />
       <Route path='/edit/:id' element={<Edit/>}/>
+      <Route path='/solve/:id' element={<Solve/>}/>
     </Routes>
     </>
   )

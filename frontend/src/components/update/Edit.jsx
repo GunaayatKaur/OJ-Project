@@ -8,12 +8,14 @@ function Edit() {
   const problems = {
     pname: "",
     description: "",
-    difficulty: ""
+    difficulty: "",
+    createdBy: ""
   }
 
   const {id} = useParams();
   const navigate = useNavigate();
   const [problem, setProblem] = useState(problems);
+  const [currentUser, setCurrentUser] = useState(null)
 
   const inputChangeHandler = (e) => {
     const {name,value} = e.target;
@@ -22,20 +24,46 @@ function Edit() {
   }
 
   useEffect (() => {
-    axios.get(`http://localhost:8000/Problem/${id}`)
-    .then((response)=>{
-      setProblem(response.data)
-    }).catch(error => console.log(error))
+    const fetchProblem = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/Problem/${id}`)
+        setProblem(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    const fetchCurrentUser = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) return
+
+      try {
+        const response = await axios.get("http://localhost:8000/profile", {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+        setCurrentUser(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchProblem()
+    fetchCurrentUser()
   }, [id])
 
   const SubmitForm = async(e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8000/update/${id}`, problem)
-    .then((response)=>{
-      //console.log(response);
-      toast.success(response.data.message, {position:"top-right"});
-      navigate("/problems");
-    }).catch(error => console.log(error))
+    if (currentUser && problem.createdBy === currentUser._id) { // Check if current user is the creator
+      try {
+        await axios.put(`http://localhost:8000/update/${id}`, problem)
+        toast.success("Problem updated successfully", { position: "top-right" })
+        navigate("/problems")
+      } catch (error) {
+        console.error(error)
+      }
+    } else {
+      toast.error("You are not authorized to update this problem", { position: "top-right" })
+    }
   }
 
   return (

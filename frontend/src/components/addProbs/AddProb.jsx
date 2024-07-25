@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './add.css'
 import {Link, useNavigate} from 'react-router-dom'
@@ -8,11 +8,31 @@ function AddP() {
   const problems = {
     pname: "",
     description: "",
-    difficulty: ""
+    difficulty: "",
+    createdBy: ""
   }
 
   const [problem, setproblem] = useState(problems);
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null)
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) return
+
+      try {
+        const response = await axios.get("http://localhost:8000/profile", {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+        setCurrentUser(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchCurrentUser()
+  }, [])
+
   const inputHandler = (e) => {
     const {name, value} = e.target;
     setproblem({...problem, [name] :value});
@@ -20,6 +40,11 @@ function AddP() {
 
   const submitForm = async(e) => {
     e.preventDefault();
+    if (!currentUser) {
+      toast.error("You need to be logged in to add problems", { position: "top-right" })
+      return
+    }
+
     await axios.post("http://localhost:8000/create", problem)
     .then((response)=>{
       //console.log(response);

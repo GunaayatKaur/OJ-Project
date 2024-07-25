@@ -9,7 +9,8 @@ export const create = async(req, res) => {
         const probData = new Problem({
             pname,
             description,
-            difficulty
+            difficulty,
+            createdBy: req.user._id
         });
 
         const savedData = await probData.save();

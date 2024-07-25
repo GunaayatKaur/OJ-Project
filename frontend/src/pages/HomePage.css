@@ -1,5 +1,5 @@
-body {
-    background-image: url('https://cdn.pixabay.com/photo/2018/03/10/18/03/laptop-3214756_1280.png');
+.homepage {
+    background-image: url('./Hand-coding-rafiki.png');
     background-size: cover;
     background-position: center;
   }
