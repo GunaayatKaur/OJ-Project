@@ -16,16 +16,16 @@ const register = async(req,res) =>{
             return res.status(400).json({message: "Please enter the required fields"});
         }
 
-        //check password length
-        if (password.length < 8) {
-            return res.status(400).json({ message: 'Password must be at least 8 characters long' });
-        }
-
         //check if user already exists
         const existingUser =  await User.findOne({email});//mongoose query
         console.log(existingUser);
         if(existingUser) {
             return res.status(400).json({message: "User already exists!"});
+        }
+
+        //check password length
+        if (password.length < 8) {
+            return res.status(400).json({ message: 'Password must be at least 8 characters long' });
         }
 
         //encrpyt password--bcrypt

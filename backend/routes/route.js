@@ -6,6 +6,7 @@ import { getProfile } from '../controllers/profileController.js';
 import auth from '../middleware/auth.js';
 import { create, deleteProblem, getAll, getOneProblem, update } from '../controllers/prob-controller.js';
 import verifyCreator from '../middleware/verifyCreator.js';
+import { addTestCase, getTestCasesByProblemId } from '../controllers/testcaseController.js';
 
 const router = express.Router();
 
@@ -20,4 +21,6 @@ router.get("/Problem/:id", getOneProblem);
 router.put("/update/:id", auth, verifyCreator, update);
 router.delete("/delete/:id", auth, verifyCreator, deleteProblem);
 
+router.post('/testcase/:id', addTestCase);
+router.get('/getTestcases/:id', getTestCasesByProblemId);
 export default router;

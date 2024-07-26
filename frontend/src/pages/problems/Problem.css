@@ -1,7 +1,7 @@
 .userTable{
     width: 60%;
     background-color: white;
-    box-shadow: 1px 1px 8px rgba(0,0,0,0.065);
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.08);
     border-radius: 5px;
     margin: 50px auto; 
     padding: 50px;
@@ -29,6 +29,10 @@
 .userTable table tbody td{
     padding: 10px;
     text-align: center;
+}
+
+.userTable table tbody tr{
+    border-width: 2px;
 }
 .actionButtons button{
     border: 0;

@@ -73,7 +73,7 @@ function Problem() {
                             {currentUser && currentUser._id === problem.createdBy && (
                                 <>
                                     <button onClick={() => deleteProblem(problem._id)}><i className="fa-solid fa-trash"></i></button>
-                                    <Link to = {`/edit/` +problem._id}><i className="fa-solid fa-pen-to-square"></i></Link>
+                                    <Link to = {`/edit/` +problem._id}><i className="fa-solid fa-pen-to-square mt-5"></i></Link>
                                 </>)}
                             </td>
                         </tr>

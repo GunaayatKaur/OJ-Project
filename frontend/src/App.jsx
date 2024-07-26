@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useLocation} from 'react-router-dom'
 import axios from 'axios'
 import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
@@ -16,6 +16,9 @@ axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 function App() {
+  // const location = useLocation();
+  // const showNavbar = !location.pathname.startsWith('/solve');
+
   return (
     <>
     <Navbar />
