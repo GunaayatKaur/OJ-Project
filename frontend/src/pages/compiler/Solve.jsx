@@ -87,7 +87,7 @@ function Solve() {
     <div className='grid h-full grid-cols-[1fr,2fr] p-2'>
       <div style={{fontFamily: 'sans-serif'}} className='w-full'>
         <Link to ={'/problems'} className='text-3xl'><i className="fa-solid fa-arrow-left"></i></Link>
-        <div className='flex flex-col bg-slate-200 rounded-xl ml-5 p-4 mt-7 pb-20'>
+        <div className='flex flex-col bg-slate-200 rounded-xl ml-12 p-4 mt-7 pb-20'>
           <h1 className='justify-between text-3xl font-bold'>{problem.pname}</h1>
           <br />
           <p>Difficulty: {problem.difficulty}</p>

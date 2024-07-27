@@ -66,7 +66,7 @@ function Problem() {
                         return (
                         <tr key={problem._id}>
                             <td>{index+1}</td>
-                            <td><Link to={`/solve/${problem._id}`}>{problem.pname}</Link></td>
+                            <td className='text-blue-800'><Link to={`/solve/${problem._id}`}>{problem.pname}</Link></td>
                             <td>{problem.description}</td>
                             <td>{problem.difficulty}</td>
                             <td className='actionButtons'>
