@@ -60,7 +60,7 @@ function Solve() {
     };
   
     try {
-      const { data } = await axios.post('http://localhost:8080/run', payload);
+      const { data } = await axios.post('http://localhost:8000/run', payload);
       console.log(data);
       setOutput(data.output);
     } catch (error) {
@@ -76,7 +76,7 @@ function Solve() {
     };
 
     try {
-        const { data } = await axios.post('http://localhost:8080/submit', payload);
+        const { data } = await axios.post('http://localhost:8000/submit', payload);
         setSubmitMessage(data.message);
     } catch (error) {
         console.error('Error submitting code:', error);

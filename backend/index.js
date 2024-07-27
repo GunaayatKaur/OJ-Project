@@ -5,7 +5,6 @@ const app = express();
 import dotenv from 'dotenv';
 import router from './routes/route.js';
 import cookieParser from 'cookie-parser';
-
 dotenv.config();
 
 //middlewares

@@ -1,7 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const {v4: uuid} = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuid } from 'uuid';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const dirCodes = path.join(__dirname, 'codes');//path for codes folder created
 
 if(!fs.existsSync(dirCodes)) {
@@ -17,6 +20,4 @@ const generateFile = async(language, code) =>{
     return filePath;
 };
 
-module.exports = {
-    generateFile,
-};
+export default generateFile;
