@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 export default function Login() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,7 +13,7 @@ export default function Login() {
     e.preventDefault();
     setError('');
     try {
-      const response = await axios.post('http://localhost:8000/login', 
+      const response = await axios.post(`${backendUrl}/login`, 
         {email, password},
         { withCredentials: true });
 

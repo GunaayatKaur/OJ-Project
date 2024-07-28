@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 const Profile = () => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [profile, setProfile] = useState({});
     const [error, setError] = useState(null);
 
@@ -16,7 +17,7 @@ const Profile = () => {
             }
 
             try {
-                const res = await axios.get('http://localhost:8000/profile', {
+                const res = await axios.get(`${backendUrl}/profile`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

@@ -5,12 +5,13 @@ import './Problem.css'
 import toast from 'react-hot-toast'
 
 function Problem() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const[problems, setproblems] = useState([]) ; 
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
     const fetchData = async() => {
-        const response = await axios.get("http://localhost:8000/AllProblems");
+        const response = await axios.get(`${backendUrl}/AllProblems`);
         setproblems(response.data);
     }
     const fetchCurrentUser = async () => {
@@ -18,7 +19,7 @@ function Problem() {
         if (!token) return
   
         try {
-          const response = await axios.get("http://localhost:8000/profile", {
+          const response = await axios.get(`${backendUrl}/profile`, {
             headers: { 'Authorization': `Bearer ${token}` }
           })
           setCurrentUser(response.data)
@@ -36,7 +37,7 @@ function Problem() {
         return
     }
 
-    await axios.delete(`http://localhost:8000/delete/${ProblemId}`)
+    await axios.delete(`${backendUrl}/delete/${ProblemId}`)
     .then((response) => {
         setproblems((prevUser) => prevUser.filter((problem) => (problem._id !== ProblemId)))
         toast.success(response.data.message, {position: 'top-right'})

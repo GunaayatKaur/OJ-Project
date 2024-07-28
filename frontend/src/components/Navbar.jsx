@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Navbar() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -12,7 +13,7 @@ export default function Navbar() {
 
   const checkLoginStatus = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/profile', {
+      const response = await axios.get(`${backendUrl}/profile`, {
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -28,7 +29,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/logout', {
+      const response = await axios.get(`${backendUrl}/logout`, {
         withCredentials: true,
       });
       if (response.status === 200) {

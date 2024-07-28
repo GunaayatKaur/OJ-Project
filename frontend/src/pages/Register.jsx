@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 export default function Register() {
-
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [userName, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +14,7 @@ export default function Register() {
     setError(''); 
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/register', 
+      const response = await axios.post(`${backendUrl}/register`, 
         {userName, email, password},
         { withCredentials: true });
       console.log(response.data);

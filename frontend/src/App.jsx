@@ -12,7 +12,7 @@ import AddP from './components/addProbs/AddProb'
 import Edit from './components/update/Edit'
 import Solve from './pages/compiler/Solve'
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.withCredentials = true;
 
 function App() {

@@ -5,6 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 function AddP() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const problems = {
     pname: "",
     description: "",
@@ -21,7 +22,7 @@ function AddP() {
       if (!token) return
 
       try {
-        const response = await axios.get("http://localhost:8000/profile", {
+        const response = await axios.get(`${backendUrl}/profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
         setCurrentUser(response.data)
@@ -45,7 +46,7 @@ function AddP() {
       return
     }
 
-    await axios.post("http://localhost:8000/create", problem)
+    await axios.post(`${backendUrl}/create`, problem)
     .then((response)=>{
       //console.log(response);
       toast.success(response.data.message, {position:"top-right"});

@@ -8,6 +8,7 @@ import 'prismjs/themes/prism.css';
 import axios from 'axios';
 
 function Solve() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const problems = {
     pname: "",
     description: "",
@@ -18,7 +19,7 @@ function Solve() {
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/Problem/${id}`);
+        const response = await axios.get(`${backendUrl}/Problem/${id}`);
         setProblem(response.data);
       } catch (error) {
         console.error('Error fetching problem details:', error);
@@ -60,7 +61,7 @@ function Solve() {
     };
   
     try {
-      const { data } = await axios.post('http://localhost:8000/run', payload);
+      const { data } = await axios.post(`${backendUrl}/run`, payload);
       console.log(data);
       setOutput(data.output);
     } catch (error) {
@@ -76,7 +77,7 @@ function Solve() {
     };
 
     try {
-        const { data } = await axios.post('http://localhost:8000/submit', payload);
+        const { data } = await axios.post(`${backendUrl}/submit`, payload);
         setSubmitMessage(data.message);
     } catch (error) {
         console.error('Error submitting code:', error);

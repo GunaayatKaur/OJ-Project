@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 function Edit() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const problems = {
     pname: "",
     description: "",
@@ -26,7 +27,7 @@ function Edit() {
   useEffect (() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/Problem/${id}`)
+        const response = await axios.get(`${backendUrl}/Problem/${id}`)
         setProblem(response.data)
       } catch (error) {
         console.error(error)
@@ -38,7 +39,7 @@ function Edit() {
       if (!token) return
 
       try {
-        const response = await axios.get("http://localhost:8000/profile", {
+        const response = await axios.get(`${backendUrl}/profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
         setCurrentUser(response.data)
@@ -55,7 +56,7 @@ function Edit() {
     e.preventDefault();
     if (currentUser && problem.createdBy === currentUser._id) { // Check if current user is the creator
       try {
-        await axios.put(`http://localhost:8000/update/${id}`, problem)
+        await axios.put(`${backendUrl}/update/${id}`, problem)
         toast.success("Problem updated successfully", { position: "top-right" })
         navigate("/problems")
       } catch (error) {
