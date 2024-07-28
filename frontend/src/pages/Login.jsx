@@ -20,7 +20,7 @@ export default function Login() {
         console.log('Login successful', response.data);
         localStorage.setItem('token', response.data.token); 
         navigate('/profile');
-        window.location.reload();
+        //window.location.reload();
     } catch (error) {
       //console.log(error.response.data)
       console.error('Error logging in:', error.response?.data || error.message);
