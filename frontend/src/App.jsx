@@ -18,14 +18,14 @@ axios.defaults.withCredentials = true;
 function App() {
   // const location = useLocation();
   // const showNavbar = !location.pathname.startsWith('/solve');
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-    <Navbar />
+    <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
     <Routes>
       <Route path='/' element={<HomePage/>} />
       <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
       <Route path="/profile" element={<Profile/>} />
       <Route path="/problems" element={<Problem/>} />
       <Route path="/add" element={<AddP/>} />

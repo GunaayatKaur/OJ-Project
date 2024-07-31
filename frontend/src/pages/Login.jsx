@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-export default function Login() {
+export default function Login({setIsLoggedIn}) {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +20,7 @@ export default function Login() {
         console.log('Login successful', response.data);
         localStorage.setItem('token', response.data.token); 
         navigate('/profile');
+        setIsLoggedIn(true);
         //window.location.reload();
     } catch (error) {
       //console.log(error.response.data)
